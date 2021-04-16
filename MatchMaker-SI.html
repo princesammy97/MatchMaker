@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang='en'>
+       
+
+<head>
+    <meta charset= 'UTF-8'>
+    <title>Matchmaker Lite for Web</title>
+</head>
+
+<body style="background-color:rgb(231, 116, 116); text-align:center">
+    <h1>Matchmaker Lite</h1>
+    <p>This application will figure out if you and I are meant to be.
+        You will answer 5 questions.
+        To each question, answer 5 if you strongly agree, 4 if you agree, 3 if you neither
+        agree nor disagree, 2 if you disagree, and 1 if you
+        strongly disagree.
+    </p>
+
+    <label>Tom Brady is the greatest quarterback of all time</label><br />
+    <select id='q1'>
+        <option value='5'>Strongly Agree</option>
+        <option value='4'>Agree</option>
+        <option value='3'>Neither agree or disagree</option>
+        <option value='2'>Disagree</option>
+        <option value= '1'>Strongly Disagree</option> 
+    </select>
+    <br /><br />
+    <label>Mountains are better than beaches</label><br />
+    <select id='q2'>
+        <option value='5'>Strongly Agree</option>
+        <option value='4'>Agree</option>
+        <option value='3'>Neither agree or disagree</option>
+        <option value='2'>Disagree</option>
+        <option value= '1'>Strongly Disagree</option> 
+    </select>
+    <br /><br />
+    <label>The pandemic will end this fall</label><br />
+    <select id= 'q3'>
+        <option value='5'>Strongly Agree</option>
+        <option value='4'>Agree</option>
+        <option value='3'>Neither agree or disagree</option>
+        <option value='2'>Disagree</option>
+        <option value= '1'>Strongly Disagree</option> 
+    </select>
+    <br /><br />
+    <label>Summer is the best season</label><br />
+    <select id= 'q4'>
+        <option value='5'>Strongly Agree</option>
+        <option value='4'>Agree</option>
+        <option value='3'>Neither agree or disagree</option>
+        <option value='2'>Disagree</option>
+        <option value= '1'>Strongly Disagree</option> 
+    </select>
+    <br /><br />
+    <label>iPhone is better than Android</label><br />
+    <select id= 'q5'>
+        <option value='5'>Strongly Agree</option>
+        <option value='4'>Agree</option>
+        <option value='3'>Neither agree or disagree</option>
+        <option value='2'>Disagree</option>
+        <option value= '1'>Strongly Disagree</option> 
+    </select>
+
+
+    <br /><br /><br />
+    <button onclick= 'calculateCompatibility()'>Calculate Compatibility</button>
+    <p id='compatibility'></p>
+
+<script>
+console.log('Starting Matchmaker Lite')
+
+function calculateCompatibility() {
+    console.log('calculateCompatbility()');
+    const DESIRED_RESPONSE = [
+        5,
+        2,
+        3,
+        5,
+        4,
+    ]
+const MAX_SCORE = 25;
+
+    let Question1response = document.getElementById('q1').selectedOptions[0].value;
+    let Question2response = document.getElementById('q2').selectedOptions[0].value;
+    let Question3response = document.getElementById('q3').selectedOptions[0].value;
+    let Question4response = document.getElementById('q4').selectedOptions[0].value;
+    let Question5response = document.getElementById('q5').selectedOptions[0].value;
+
+    console.log("Question 1 answers:");
+    console.log(document.getElementById("q1").selectedOptions[0].text);
+    console.log(document.getElementById("q1").selectedOptions[0].value);
+    console.log(question1response);
+
+    console.log("Question 2 answers:");
+    console.log(document.getElementById("q2").selectedOptions[0].text);
+    console.log(document.getElementById("q2").selectedOptions[0].value);
+    console.log(question2response);
+
+    console.log("Question 3 answers:");
+    console.log(document.getElementById("q3").selectedOptions[0].text);
+    console.log(document.getElementById("q3").selectedOptions[0].value);
+    console.log(question3response);
+
+    console.log("Question 4 answers:");
+    console.log(document.getElementById("q4").selectedOptions[0].text);
+    console.log(document.getElementById("q4").selectedOptions[0].value);
+    console.log(question4response);
+
+    console.log("Question 5 answers:");
+    console.log(document.getElementById("q5").selectedOptions[0].text);
+    console.log(document.getElementById("q5").selectedOptions[0].value);
+    console.log(question5response);
+
+    let question1Compatibility = 5 - Math.abs(question1response - DESIRED_RESPONSE[0]);
+    let question2Compatibility = 5 - Math.abs(question2response - DESIRED_RESPONSE[1]);
+    let question3Compatibility = 5 - Math.abs(question3response - DESIRED_RESPONSE[2]);
+    let question4Compatibility = 5 - Math.abs(question4response - DESIRED_RESPONSE[3]);
+    let question5Compatibility = 5 - Math.abs(question5response - DESIRED_RESPONSE[4]);
+
+    console.log("c1="+question1Compatibility);
+    console.log("c2="+question2Compatibility);
+    console.log("c3="+question3Compatibility);
+    console.log("c4="+question4Compatibility);
+    console.log("c5="+question5Compatibility);
+//converts total compatibility 
+    let totalCompatibility = question1Compatibility + question2Compatbility + question3Compatibility + question4Compatibility + question5Compatibility;
+
+//converts compatiblity to %.
+    totalCompatibility *= 100 / MAX_SCORE;
+    totalCompatibility = Math.round(totalCompatibility);
+    console.log('TotalCompatibility=' + totalCompatibility);
+
+        document.getElementById('compatibility').innerHTML = 'Your compatibility is:'+ totalCompatibility;
+
+}
+
+</script>
+</body>
+</html>
